@@ -6,3 +6,196 @@
 	<link rel="stylesheet"
 	href=https://waph-uc.github.io/style1.css>
     <!--<style>
+    	body{background-color: powderblue;}
+                                                                                                                                                                                                                                                                                                                                                    
+    	h2 {color: navy;}
+    	h3{color: navy;}
+
+    </style> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</head>
+<body>
+	<div class="container wrapper">
+	<div id="top">
+		<h1 style ="color:deeppink;">Web Application Programming and Hacking</h1>
+		<h2>Front-end Web Development Lab </h2>
+		<h3>Instructor : Dr.Phu Phung</h3>
+
+	</div>
+	<div class="wrapper">s
+	<div id ="menubar">
+		<h3> Student : Supraja Bethi </h3>
+
+       <div id= "email" onclick="showhideEmail()">Show my email</div>
+       <script src="email.js"></script>
+		<img src= "images/headshot.jpg" alt="My headshot" width="50">
+		Your input
+
+
+	</div>
+	<b> Experiments with JavaScript code</b><br>
+<i>Inlined JavaScript</i>
+<div id="date" onclick="document.getElementById('date').innerText=Date()">Click here to show Date()</div>
+
+<div id ="digit-clock"></div>
+
+	         
+
+	<canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
+    <script src="https://waph-uc.github.io/clock.js"></script>
+	<script type="text/javascript">
+		function displayTime(){
+			document.getElementById('digit-clock').innerHTML= "Current time:" + new Date();
+		}
+		setInterval(displayTime,500);
+		var canvas = document.getElementById("analog-clock");
+        var ctx = canvas.getContext("2d");
+        var radius = canvas.height / 2;
+        ctx.translate(radius, radius);
+        radius = radius * 0.90;
+        setInterval(drawClock, 1000);
+
+        function drawClock() {
+            drawFace(ctx, radius);
+            drawNumbers(ctx, radius);
+            drawTime(ctx, radius);
+                    }
+         // Additional code to integrate with the joke API
+                    $.get("https://v2.jokeapi.dev/joke/Programming?type=single", function(result) {
+                        console.log("From jokeAPI: " + JSON.stringify(result));
+                        $("#response").html("A programming joke of the day: " + result.joke);
+                    });
+                                        
+	</script>
+	<input name="data"
+		 onkeypress="console.log('You have pressed a key')">
+		<input type="submit" name="Submit">
+
+
+	<div id="main">
+	<p> A simple HTML page </p>
+	Using the <a href ="https://www.w3schools.com/html">W3Schools template</a>
+	<hr>
+	<b>Interaction with forms</b>
+	<div>
+		<i>Form with an HTTP GET Request</i>
+		<form action="/echo.php" method="GET" onsubmit="return validateForm(this);">
+    Your input: <input name="data" oninput="encodeInput(this)">
+    <input type="submit" value="Submit">
+</form>
+</div>
+<div>
+	<i> Form with an HTTP POST Request</i>
+	<form action="/echo.php" method="POST" name="echo_post" onsubmit="return validateForm(this);">
+    Your input:
+    <input name="data" oninput="encodeInput(this)" onkeypress="console.log('you have pressed a key')">
+    <input type="submit" value="Submit">
+</form>
+	
+</div>
+<div>
+	<i>Ajax requests</i><br>
+	Your input:
+	<input name="data" oninput="encodeInput(this)" id="data">
+<input class="button round" type="button" value="Ajax Echo" onclick="getEcho()">
+<div id="response"></div>
+
+<script type="text/javascript">
+	function getEcho()
+	{
+		var input = document.getElementById("data").value;
+		if(input.length == 0){
+			return;
+		}
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function(){
+			if(this.onreadyState == 4 && this.status == 200){
+				console.log("Received data="+xhttp.responseText);
+				document.getElementById("response").innerText="Response from server:" + xhttp.responseText;
+			}
+		}
+		xhttp.open("GET","echo.php?data="+input, true); //create an Ajax request
+		xhttp.send(); // code to send the request
+		document.getElementById("data").value="";
+	}
+
+</script>
+<br><br>
+      <div>
+        <label> Test data (Jquery GET Echo)</label>
+        <input type="text" id="userInputGet" placeholder="Enter data">
+        <button class="button round" id="sendButtonGet" onclick="jQueryAjaxGet()">Send Data</button>
+        <div id="response-getjquery"></div>
+        <script>
+          function jQueryAjaxGet() {
+            var userInput = $("#userInputGet").val();
+            if (userInput.length == 0) return;
+            $.get("echo.php?data=" + userInput, function (response) {
+              $("#response-getjquery").html("Response from server " + response);
+            });
+            $("#userInputGet").val(""); // Clear the input field
+          }
+        </script>
+      </div>
+      <br>
+      <br>
+      <div>
+        <label> Test data (Jquery POST echo)</label>
+        <input type="text" id="userInputPost" placeholder="Enter data">
+        <button class="button round" id="sendButtonPost" onclick="jQueryAjaxPost()">Send Data</button>
+        <div id="response-postjquery"></div>
+        <i>Guess Age</i><br>
+                  Your input:<input name="data" id="ageInput" oninput="encodeInput(this)">
+                    <input class="button round" type="button" value="guess Age" onclick="guessAge($('#ageInput').val())">
+                    <br>
+                    <div id="response"></div>
+                </div>
+        <script>
+          function jQueryAjaxPost() {
+            var userInput = $("#userInputPost").val();
+            if (userInput.length == 0) return;
+            $.post("echo.php", { data: userInput }, function (response) {
+              $("#response-postjquery").html("Response from server " + response);
+            });
+            $("#userInputPost").val(""); // Clear the input field
+          }
+          //Function to guess age based on input
+
+                    async function guessAge(name) 
+                    {
+                         if (validateInput(name)) {
+            const encodedName = encodeInput(name);
+            const response = await fetch("https://api.agify.io/?name=" + encodedName);
+            const result = await response.json();
+            const encodedAge = encodeInput(result.age.toString());
+            $("#response").html("Hi " + encodedName + ", your age should be " + encodedAge);
+        } else {
+            $("#response").html("Please enter a valid name.");
+        }
+    }
+	function validateInput(input)
+		{
+			if(input.length == 0){
+				alert("Please enter some text");
+				return false;
+			}
+			return true;
+		}
+
+		 function encodeInput(input) {
+            const encoded = document.createElement('div');
+            encoded.innerText = input.value;
+            input.value = encoded.innerHTML;
+        }
+
+        </script>
+      </div>
+
+
+
+  <hr>
+
+</body>
+</html>

@@ -16,6 +16,7 @@
         <link href="styles.css" rel="stylesheet" />
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -201,6 +202,29 @@
 
     <!-- Additional Functionality (Add your own functionality here) -->
 
+     // Render the React component into the 'root' div
+ <script type="text/babel">
+  // React component code
+ <div id="emailtoggle"></div>
+  function App() {
+    const [emailVisible, setEmailVisible] = React.useState(true);
+
+    const toggleEmail = () => {
+      setEmailVisible(!emailVisible);
+    };
+
+    return (
+      <div>
+        <button onClick={toggleEmail}>Toggle Email</button>
+        {emailVisible && <div id="email">Your email content goes here</div>}
+      </div>
+    );
+  }
+
+  // Render the React component into the 'root' div
+  ReactDOM.render(<App />, document.getElementById('emailtoggle'));
+</script>
+
     <script type="text/javascript">
         // Digital Clock
         function displayTime() {
@@ -237,21 +261,7 @@
   }
 
   // Render the React component into the 'root' div
-  ReactDOM.render(<App />, document.getElementById('emailtoggle'));
-
-        // Analog Clock
-        var canvas = document.getElementById("analog-clock");
-        var ctx = canvas.getContext("2d");
-        var radius = canvas.height / 2;
-        ctx.translate(radius, radius);
-        radius = radius * 0.90;
-        setInterval(drawClock, 1000);
-
-        function drawClock() {
-            drawFace(ctx, radius);
-            drawNumbers(ctx, radius);
-            drawTime(ctx, radius);
-        }
+  
 
         // Additional Functionality (Add your own functionality here)
 

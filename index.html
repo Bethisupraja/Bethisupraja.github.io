@@ -17,6 +17,9 @@
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
         <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -189,14 +192,33 @@
   gtag('config', 'G-NF9N51VSSP');
 </script>
 <!-- Digital Clock -->
-    <div id="digital-clock" onclick="toggleDigitalClock()">Click here to toggle Digital Clock</div>
-    <div id="digit-clock"></div>
-
-    <!-- Analog Clock -->
-    <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
-    <script src="https://waph-uc.github.io/clock.js"></script>
     
-   
+   <div id="digit-clock"></div>
+<canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
+<script src="https://waph-uc.github.io/clock.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    function displayTime() {
+      $('#digit-clock').html("Current time: " + new Date());
+    }
+
+    setInterval(displayTime, 500);
+
+    var canvas = $('#analog-clock')[0];
+    var ctx = canvas.getContext("2d");
+    var radius = canvas.height / 2;
+    ctx.translate(radius, radius);
+    radius = radius * 0.90;
+
+    setInterval(drawClock, 1000);
+
+    function drawClock() {
+      drawFace(ctx, radius);
+      drawNumbers(ctx, radius);
+      drawTime(ctx, radius);
+    }
+  });
+</script>
 
     <!-- Additional Functionality (Add your own functionality here) -->
 
@@ -222,20 +244,7 @@
 
     <script type="text/javascript">
         // Digital Clock
-        function displayTime() {
-            document.getElementById('digit-clock').innerHTML = "Current time: " + new Date();
-        }
-        var digitalClockInterval;
 
-        function toggleDigitalClock() {
-            if (digitalClockInterval) {
-                clearInterval(digitalClockInterval);
-                digitalClockInterval = null;
-                document.getElementById('digit-clock').innerText = "";
-            } else {
-                digitalClockInterval = setInterval(displayTime, 500);
-            }
-        }
 
         // Email Visibility in react 
 

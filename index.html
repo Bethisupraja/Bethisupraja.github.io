@@ -352,7 +352,7 @@
                     const li = $('<li>');
                     const checkbox = $('<input>').attr('type', 'checkbox').prop('checked', task.completed);
                     const label = $('<label>').text(task.text);
-                    const deleteButton = $('<span>').addClass('delete-task').text('Delete');
+                    const deleteButton = $('<span>').addClass('delete-task').text('   Delete');
 
                     if (task.completed) {
                         li.addClass('completed');

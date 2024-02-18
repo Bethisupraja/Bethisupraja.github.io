@@ -100,10 +100,9 @@
                         <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
                         <li class="list-inline-item"><i class="fab fa-java"></i></li>
                         <li class="list-inline-item"><i class="fab fa-python"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-C"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-Git"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-Visula Studio Code"></i></li>
-    
+                        <li class="list-inline-item"><i class="fab fa-c"></i></li>
+                        <li class="list-inline-item"><i class="fab fa-github"></i></li>
+                        
                     </ul>
             </section>
             <hr class="m-0" />
@@ -292,6 +291,43 @@
 
         displayXKCDComic(specificComicData);
     </script>
+        <script>
+        function setCookie(cname, cvalue, exdays) {
+  					const d = new Date();
+  					d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  					let expires = "expires="+ d.toUTCString();
+  					document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+				}
+
+				function getCookie(cname) {
+  					let name = cname + "=";
+  					let decodedCookie = decodeURIComponent(document.cookie);
+  					let ca = decodedCookie.split(';');
+  					for(let i = 0; i <ca.length; i++) {
+    					let c = ca[i];
+    					while (c.charAt(0) == ' ') {
+      						c = c.substring(1);
+    					}
+    					if (c.indexOf(name) == 0) {
+      						return c.substring(name.length, c.length);
+    					}
+  					}
+  					return "";
+				}
+
+				function checkCookie() {
+  					let lastVisit = getCookie("Last Visit");
+  					if (lastVisit != "") {
+   						alert("Welcome back!! Your last visit was on " + lastVisit);
+  					} else {
+  						alert("Welcome to my Home page!")
+      					setCookie("Last Visit", new Date(), 365);
+  					}
+				}
+
+				// Call the checkCookie function when the page loads
+				window.onload = checkCookie();
+      </script>
 
         
     </body>

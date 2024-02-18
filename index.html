@@ -263,6 +263,35 @@
     // Fetch a new joke every 1 minute
     setInterval(fetchJoke, 60000);
 </script>
+    <h1>XKCD Comic</h1>
+    <div id="xkcdContainer">
+        <script>
+        // Function to display a specific XKCD comic
+        function displayXKCDComic(data) {
+            const xkcdContainer = document.getElementById('xkcdContainer');
+            const img = document.createElement('img');
+            img.src = data.img;
+            img.alt = data.alt;
+            xkcdContainer.appendChild(img);
+        }
+
+        // Call the function to display the specific XKCD comic
+        const specificComicData = {
+            "month": "2",
+            "num": 2895,
+            "link": "",
+            "year": "2024",
+            "news": "",
+            "safe_title": "Treasure Chests",
+            "transcript": "",
+            "alt": "[earlier] \"Your vintage-style handmade chest business is struggling. But I have a plan.\"",
+            "img": "https://imgs.xkcd.com/comics/treasure_chests.png",
+            "title": "Treasure Chests",
+            "day": "16"
+        };
+
+        displayXKCDComic(specificComicData);
+    </script>
 
         
     </body>

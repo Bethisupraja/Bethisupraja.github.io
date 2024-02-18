@@ -336,7 +336,7 @@
     <ul id="taskList"></ul>
 
     <script>
-              $(document).ready(function() {
+        $(document).ready(function() {
             // Load tasks from localStorage
             function loadTasks() {
                 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -348,10 +348,11 @@
                 const taskList = $('#taskList');
                 taskList.empty();
 
-                tasks.forEach(task => {
+                tasks.forEach((task, index) => {
                     const li = $('<li>');
                     const checkbox = $('<input>').attr('type', 'checkbox').prop('checked', task.completed);
                     const label = $('<label>').text(task.text);
+                    const deleteButton = $('<span>').addClass('delete-task').text('Delete');
 
                     if (task.completed) {
                         li.addClass('completed');
@@ -362,7 +363,13 @@
                         updateLocalStorage();
                     });
 
-                    li.append(checkbox, label);
+                    deleteButton.on('click', function() {
+                        tasks.splice(index, 1);
+                        localStorage.setItem('tasks', JSON.stringify(tasks));
+                        loadTasks();
+                    });
+
+                    li.append(checkbox, label, deleteButton);
                     taskList.append(li);
                 });
             }

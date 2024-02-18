@@ -345,23 +345,23 @@
 
             // Display tasks in the UI
             function displayTasks(tasks) {
-                    const taskList = $('#taskList');
-                     taskList.empty();
+                const taskList = $('#taskList');
+                taskList.empty();
 
-              tasks.forEach(task => {
-                const li = $('<li>').text(task.text);
-                  if (task.completed) {
-                  li.addClass('completed');
+                tasks.forEach(task => {
+                    const li = $('<li>').text(task.text);
+                    if (task.completed) {
+                        li.addClass('completed');
                     }
 
-          li.on('click', function() {
-               $(this).toggleClass('completed');
-                updateLocalStorage();
-               });
+                    li.on('click', function() {
+                        $(this).toggleClass('completed');
+                        updateLocalStorage();
+                    });
 
-            taskList.append(li);
-    });
-}
+                    taskList.append(li);
+                });
+            }
 
             // Add a new task
             $('#addTask').on('click', function() {
@@ -401,7 +401,6 @@
             loadTasks();
         });
     </script>
-
         
     </body>
 </html>

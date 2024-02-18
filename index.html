@@ -333,6 +333,11 @@
     <input type="text" id="taskInput" placeholder="Add a new task">
     <button id="addTask">Add Task</button>
 
+    <h1>Todo List</h1>
+
+    <input type="text" id="taskInput" placeholder="Add a new task">
+    <button id="addTask">Add Task</button>
+
     <ul id="taskList"></ul>
 
     <script>
@@ -353,11 +358,6 @@
                     if (task.completed) {
                         li.addClass('completed');
                     }
-
-                    li.on('click', function() {
-                        $(this).toggleClass('completed');
-                        updateLocalStorage();
-                    });
 
                     taskList.append(li);
                 });
@@ -381,6 +381,12 @@
                     taskInput.val('');
                     loadTasks();
                 }
+            });
+
+            // Toggle completion status on task click
+            $(document).on('click', '#taskList li', function() {
+                $(this).toggleClass('completed');
+                updateLocalStorage();
             });
 
             // Update localStorage with current tasks

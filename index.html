@@ -336,7 +336,7 @@
     <ul id="taskList"></ul>
 
     <script>
-        $(document).ready(function() {
+              $(document).ready(function() {
             // Load tasks from localStorage
             function loadTasks() {
                 const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -349,11 +349,20 @@
                 taskList.empty();
 
                 tasks.forEach(task => {
-                    const li = $('<li>').text(task.text);
+                    const li = $('<li>');
+                    const checkbox = $('<input>').attr('type', 'checkbox').prop('checked', task.completed);
+                    const label = $('<label>').text(task.text);
+
                     if (task.completed) {
                         li.addClass('completed');
                     }
 
+                    checkbox.on('change', function() {
+                        li.toggleClass('completed', this.checked);
+                        updateLocalStorage();
+                    });
+
+                    li.append(checkbox, label);
                     taskList.append(li);
                 });
             }
@@ -378,18 +387,12 @@
                 }
             });
 
-            // Toggle completion status on task click
-            $(document).on('click', '#taskList li', function() {
-                $(this).toggleClass('completed');
-                updateLocalStorage();
-            });
-
             // Update localStorage with current tasks
             function updateLocalStorage() {
                 const tasks = [];
                 $('#taskList li').each(function() {
                     const task = {
-                        text: $(this).text(),
+                        text: $(this).find('label').text(),
                         completed: $(this).hasClass('completed')
                     };
                     tasks.push(task);

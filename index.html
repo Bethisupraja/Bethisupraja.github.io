@@ -14,6 +14,8 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
+        <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+        <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -216,11 +218,26 @@
             }
         }
 
-        // Email Visibility
-        function toggleEmail() {
-            var emailElement = document.getElementById('email');
-            emailElement.style.display = (emailElement.style.display === 'none') ? 'block' : 'none';
-        }
+        // Email Visibility in react 
+
+        <div id="emailtoggle"></div>
+        function App() {
+            const [emailVisible, setEmailVisible] = React.useState(true);
+        
+            const toggleEmail = () => {
+              setEmailVisible(!emailVisible);
+            };
+        
+            return (
+              <div>
+                <button onClick={toggleEmail}>Toggle Email</button>
+                {emailVisible && <div id="email">Your email content goes here</div>}
+              </div>
+            );
+  }
+
+  // Render the React component into the 'root' div
+  ReactDOM.render(<App />, document.getElementById('emailtoggle'));
 
         // Analog Clock
         var canvas = document.getElementById("analog-clock");

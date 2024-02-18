@@ -239,6 +239,22 @@
         // Additional Functionality (Add your own functionality here)
 
     </script>
+ <!-- Joke of the Day -->
+    <div id="response"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script type="text/javascript">
+        // Joke of the Day from jokeAPI
+        function fetchJoke() {
+            $.get("https://v2.jokeapi.dev/joke/Any", function(result) {
+                console.log("From jokeAPI: " + JSON.stringify(result));
+                $("#response").html("A joke of the day: " + result.joke);
+            });
+        }
+
+        // Fetch a new joke every 1 minute
+        setInterval(fetchJoke, 60000);
+    </script>
         
     </body>
 </html>

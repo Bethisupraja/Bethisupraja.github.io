@@ -182,8 +182,6 @@
         
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
         <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-NF9N51VSSP"></script>
 <script>
@@ -244,23 +242,28 @@
 </script>
 
 
- <!-- Joke of the Day -->
-    <div id="response"></div>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script type="text/javascript">
-        
+<!-- Joke of the Day -->
+<div id="response"></div>
+<script type="text/javascript">
     // Joke of the Day from jokeAPI
-        function fetchJoke() {
-            $.get("https://v2.jokeapi.dev/joke/Any", function(result) {
-                console.log("From jokeAPI: " + JSON.stringify(result));
-                $("#response").html("A joke of the day: " + result.joke);
-            });
-        }
+    function fetchJoke() {
+        $.get("https://v2.jokeapi.dev/joke/Any", function (result) {
+            console.log("From jokeAPI: " + JSON.stringify(result));
 
-        // Fetch a new joke every 1 minute
-        setInterval(fetchJoke, 60000);
-    </script>
+            if (result.type === "twopart") {
+                // If it's a two-part joke
+                $("#response").html("A joke of the day: " + result.setup + "<br>" + result.delivery);
+            } else {
+                // If it's a single-part joke
+                $("#response").html("A joke of the day: " + result.joke);
+            }
+        });
+    }
+
+    // Fetch a new joke every 1 minute
+    setInterval(fetchJoke, 60000);
+</script>
+
         
     </body>
 </html>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Resume - Start Bootstrap Theme</title>
+        <title>Resume - Supraja Bethi</title>
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -14,10 +14,12 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="styles.css" rel="stylesheet" />
+       <!-- react CDN -->
         <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
         <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+        <!--babel CDN -->
         <script crossorigin src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-
+         <!-- jquery CDN -->
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     </head>
@@ -191,7 +193,7 @@
 
   gtag('config', 'G-NF9N51VSSP');
 </script>
-<!-- Digital Clock -->
+<!-- Digital Clock  and Analog using jquery-->
     
    <div id="digit-clock"></div>
 <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
@@ -220,11 +222,10 @@
   });
 </script>
 
-    <!-- Additional Functionality (Add your own functionality here) -->
-
+<!--   email toggle in react -->
    <div id="emailtoggle"></div>
    <script type="text/babel">
-  // Your React component code
+  //  React component code
   function App() {
     const [emailVisible, setEmailVisible] = React.useState(true);
 
@@ -242,40 +243,14 @@
     ReactDOM.render(<App/>, document.getElementById('emailtoggle'));
 </script>
 
-    <script type="text/javascript">
-        // Digital Clock
 
-
-        // Email Visibility in react 
-
-        <div id="emailtoggle"></div>
-        function App() {
-            const [emailVisible, setEmailVisible] = React.useState(true);
-        
-            const toggleEmail = () => {
-              setEmailVisible(!emailVisible);
-            };
-        
-            return (
-              <div>
-                <button onClick={toggleEmail}>Toggle Email</button>
-                {emailVisible && <div id="email">Your email content goes here</div>}
-              </div>
-            );
-  }
-
-  // Render the React component into the 'root' div
-  
-
-        // Additional Functionality (Add your own functionality here)
-
-    </script>
  <!-- Joke of the Day -->
     <div id="response"></div>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script type="text/javascript">
-        // Joke of the Day from jokeAPI
+        
+    // Joke of the Day from jokeAPI
         function fetchJoke() {
             $.get("https://v2.jokeapi.dev/joke/Any", function(result) {
                 console.log("From jokeAPI: " + JSON.stringify(result));

@@ -196,16 +196,13 @@
     <canvas id="analog-clock" width="150" height="150" style="background-color:#999"></canvas>
     <script src="https://waph-uc.github.io/clock.js"></script>
     
-    <!-- Email Visibility -->
-    <div id="email-toggle" onclick="toggleEmail()">Click here to toggle Email</div>
-    <p id="email" style="display:none;">bethisa@mail.uc.edu</p>
+   
 
     <!-- Additional Functionality (Add your own functionality here) -->
 
-     // Render the React component into the 'root' div
- <script type="text/babel">
-  // React component code
- <div id="emailtoggle"></div>
+   <div id="emailtoggle"></div>
+   <script type="text/babel">
+  // Your React component code
   function App() {
     const [emailVisible, setEmailVisible] = React.useState(true);
 
@@ -216,12 +213,12 @@
     return (
       <div>
         <button onClick={toggleEmail}>Toggle Email</button>
-        {emailVisible && <div id="email">Your email content goes here</div>}
+        {emailVisible && <div id="email">bethisa@mail.uc.edu</div>}
       </div>
     );
   }
 
-  // Render the React component into the 'root' div
+  // Render the React component into the 'emailtoggle' div
   ReactDOM.render(<App />, document.getElementById('emailtoggle'));
 </script>
 
